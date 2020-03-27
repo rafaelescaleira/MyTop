@@ -8,6 +8,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/badge/Linguagem-C-orange.svg" alt="Linguagem C"/>
+<img src="https://img.shields.io/badge/Sistema-Linux-orange.svg" alt="Sistema Linux"/>
 </p>
 
 A feramenta deve listar processos ativos no sistema operacional, de maneira similar à ferramenta top, apresentando para cada um deles:
