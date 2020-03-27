@@ -2,8 +2,8 @@
 <img src="Assets/logo.png" width="10%" />
 </div>
 
-# <div align = "center"> MyTop </div>
-
+# <div align = "center"> MyTop (Sistemas Operacionais) </div>
+<p align="center"> Universidade Federal do Mato Grosso do Sul </p>
 <p></p>
 
 <p align="center">
