@@ -2,24 +2,22 @@
 #include <stdlib.h>
 
 struct cpust {
-
-<<<<<<< Updated upstream
-	unsigned long utime;
-	unsigned long stime;
-	unsigned long um;
-	unsigned long nm;
-	unsigned long sm;
+	unsigned long pid;
+	unsigned long user;
+	unsigned long pr;
+	unsigned long s;
+	unsigned long cpu;
+	unsigned long time;
+	unsigned long command;
 } typedef cpust;
 
-
-struct cpusg {
-
+struct cpusg{
 	float u;
 	float s;
 };
 
-void gcpusg(struct cpusg *usg,struct cpust *st1,struct cpust *st2) {
-    
+void gcpusg(struct cpusg *usg,struct cpust *st1,struct cpust *st2)
+{
 	if(st1->utime == st2->utime)
 		usg->u = 0;
 	else{
@@ -50,8 +48,25 @@ void clear_cpust(struct cpust *st)
 	st->sm = 0;
 }
 
-void read_st(struct cpust *st)
+void read_pid_st(struct cpust *st)
 {
+	FILE *fp;
+	fp = fopen("/proc/30634/stat","r");
+	int pid,ppid,pgrp,session,tty_nr,tpgid;
+	unsigned int flags;
+	unsigned long minflt,cminflt,majflt,cmajflt;
+	char cm[255],cpun[255],stat;
+	if(fscanf(fp,"%d %s %c %d %d %d %d %d %u %lu %lu %lu %lu %lu %lu",
+		&pid,cm,&stat,&ppid,&pgrp,&session,&tty_nr,&tpgid,&flags,
+		&minflt,&cminflt,&majflt,&cmajflt,&(st->utime),&(st->stime)) == EOF)
+		perror("fscanf");
+	printf("pid: %d command name: %s utime: %ld stime: %ld\n",
+		pid,cm,st->utime,st->stime);
+	fclose(fp);
+}
+
+void read_st(struct cpust * st) {
+
 	char cpun[255];
 	FILE *fp = fopen("/proc/stat","r");
 	if(fscanf(fp,"%s %ld %ld %ld",cpun,&(st->um),&(st->nm),&(st->sm)) == EOF)
@@ -61,13 +76,10 @@ void read_st(struct cpust *st)
 	fclose(fp);
 }
 
-int main()
-{
-    cpust * st;
-    st = (cpust *) malloc(sizeof(cpust));
+int main(void) {
+
+	cpust * st;
+	st = (cpust *) malloc(sizeof(cpust));
 	read_st(st);
-=======
-    printf("Rodando no Linux\n");
->>>>>>> Stashed changes
-    return 0;
+	return 0;
 }
