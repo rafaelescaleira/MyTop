@@ -3,6 +3,7 @@
 
 struct cpust {
 
+<<<<<<< Updated upstream
 	unsigned long utime;
 	unsigned long stime;
 	unsigned long um;
@@ -65,5 +66,8 @@ int main()
     cpust * st;
     st = (cpust *) malloc(sizeof(cpust));
 	read_st(st);
+=======
+    printf("Rodando no Linux\n");
+>>>>>>> Stashed changes
     return 0;
 }
